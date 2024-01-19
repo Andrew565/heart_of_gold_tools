@@ -62,6 +62,311 @@
         });
         document.getElementById("starSystemOutput").innerHTML = results;
       }
+
+      function generateStarName() {
+        // Generate name
+        let starName = "";
+        const starNames1 = [
+          "Alte",
+          "Beetle",
+          "Belze",
+          "Albe",
+          "Dent",
+          "Dolphi",
+          "Hu",
+          "Garbe",
+          "Jatra",
+          "Mekin",
+          "Hoo",
+          "Staris",
+          "Stela",
+          "Mice",
+          "Mince",
+          "Zenki",
+          "Tulla",
+          "Tupli",
+          "Shallala",
+          "Garfunkta",
+        ];
+        starName += getRandomFrom(starNames1);
+        const starNames2 = [
+          "man",
+          "mue",
+          "gra",
+          "xiinsi",
+          "yelk",
+          "kite",
+          "ville",
+          "varisi",
+          "ogloo",
+          "tina",
+          "tansa",
+          "broke",
+          "seksi",
+          "nopei",
+          "goa",
+          "needle",
+          "fisha",
+          "tua",
+          "seveni",
+          "havi",
+        ];
+        starName += getRandomFrom(starNames2);
+
+        const starNames3 = [
+          "s",
+          "ds",
+          "fy",
+          "ians",
+          "ns",
+          "n",
+          "gish",
+          "cs",
+          "rs",
+          "ax",
+          "shshsh",
+          "ls",
+          "t",
+          "ut",
+          "ak",
+          "a",
+          "ad",
+          "ilsh",
+          "and",
+          "not",
+        ];
+        starName += getRandomFrom(starNames3);
+
+        // Display name
+        document.getElementById("starNameOutput").innerText = starName;
+      }
+
+      function generateStarTraits() {
+        const races = [
+          "Zalaxians",
+          "Astralites",
+          "Plasmic Morphlings",
+          "Xylonites",
+          "Phakrine",
+          "Celestobians",
+          "Nova Serpents",
+          "Quasar Quadrupeds",
+          "Nebulon Navigators",
+          "Aquatic Lepidopterans",
+          "Aetheric Equ",
+          "Xeno-Xenolinguists",
+          "Spectrum Skaters",
+          "Plasmoid Pilgrims",
+          "Gravitational Giants",
+          "Stellar Sylphs",
+          "Quantum Quills",
+          "Pyroclasmic Phantoms",
+          "Illusory Imps",
+          "Cosmo-Croakers",
+        ];
+        const race = getRandomFrom(races);
+
+        const economies = [
+          "Declining",
+          "Destitute",
+          "Low Supply",
+          "Comfortable",
+          "Developing",
+          "Medium Supply",
+          "Flourishing",
+          "Wealthy",
+        ];
+        const economy = getRandomFrom(economies);
+
+        const conflictLevels = ["Low", "Low", "Low", "Medium", "Medium", "High"];
+        const conflictLevel = getRandomFrom(conflictLevels);
+
+        const conflictDescriptions = {
+          Low: [
+            "Gentle",
+            "Low",
+            "Mild",
+            "Peaceful",
+            "Relaxed",
+            "Stable",
+            "Tranquil",
+            "Trivial",
+            "Nonthreatening",
+            "Untroubled",
+          ],
+          Medium: [
+            "Belligerent",
+            "Boisterous",
+            "Fractious",
+            "Intermittent",
+            "Medium",
+            "Rowdy",
+            "Sporadic",
+            "Testy",
+            "Unruly",
+            "Unstable",
+          ],
+          High: [
+            "Aggressive",
+            "Alarming",
+            "At War",
+            "Critical",
+            "Dangerous",
+            "Destructive",
+            "Formidable",
+            "High",
+            "Lawless",
+            "Perilous",
+          ],
+        };
+        const conflictDescription = getRandomFrom(conflictDescriptions[conflictLevel]);
+
+        const result = `Race: ${race}<br />Economy: ${economy}<br />Level of Conflict: ${conflictDescription}`;
+        document.getElementById("starTraitsOutput").innerHTML = result;
+      }
+
+      const typesOfPlanets = [
+        "Giant Planet",
+        "Ice Giant",
+        "Mesoplanet",
+        "Planetar",
+        "Mini-Neptune",
+        "Super-Earth",
+        "Super-Jupiter",
+        "Sub-Earth",
+      ];
+      const planetBiomes = [
+        "lush",
+        "barren",
+        "dead",
+        "exotic",
+        "mega exotic",
+        "scorched",
+        "frozen",
+        "toxic",
+        "marsh",
+        "volcanic"
+      ]
+      const planetAtmospheres = [
+        "Methane",
+        "Oxygen",
+        "Carbon Dioxide",
+        "Nitrogen",
+        "Hydrogen",
+        "Helium",
+        "Ammonia",
+        "Water Vapor",
+        "Sulfur Dioxide",
+        "Carbon Monoxide",
+        "Nitrous Oxide",
+        "Ozone",
+        "Neon",
+        "Argon",
+        "Xenon",
+        "Methanol",
+        "Ethane",
+        "Propane",
+        "Nitric Oxide",
+        "Hydrogen Sulfide"
+      ];
+
+      function generateSystemPlanets() {
+        const quantityOfPlanets = rollDice(8) - 1;
+        let result = "";
+
+        if (quantityOfPlanets === 0) {
+          result = "No planets detected here.";
+        } else {
+          result = `${quantityOfPlanets} planets found:<br />`;
+          for (let i = 0; i < quantityOfPlanets; i++) {
+            const typeOfPlanet = getRandomFrom(typesOfPlanets);
+            const quantityOfMoons = rollDice(6) - 1;
+            const biome = getRandomFrom(planetBiomes);
+            const atmosphere = getRandomFrom(planetAtmospheres);
+            result += `A ${typeOfPlanet} with ${quantityOfMoons} moons, a biome that is ${biome}, and an atmosphere chiefly comprised of ${atmosphere}.<br />`;
+          }
+        }
+
+        document.getElementById("systemPlanetsOutput").innerHTML = result;
+      }
+
+      function generatePlanetName() {
+        let planetName = "";
+
+        const planetNames1 = [
+          "Dif",
+          "Golga",
+          "Im",
+          "Men",
+          "Uk",
+          "Sinh",
+          "Fin",
+          "Garb",
+          "Arash",
+          "Helh",
+          "Leh",
+          "Otal",
+          "Sic",
+          "Jab",
+          "Op",
+          "Lil",
+          "Ay",
+          "Hb",
+          "Nau",
+          "Rrr",
+        ];
+        planetName += getRandomFrom(planetNames1);
+
+        const planetNames2 = [
+          "lallo",
+          "hin",
+          "jev",
+          "viy",
+          "err",
+          "pol",
+          "kil",
+          "jil",
+          "lec",
+          "ces",
+          "xex",
+          "zet",
+          "tex",
+          "dog",
+          "cat",
+          "tank",
+          "wat",
+          "rrr",
+          "Æ",
+          "ben",
+        ];
+        planetName += getRandomFrom(planetNames2);
+
+        const planetNames3 = [
+          "sin",
+          "fin",
+          "alo",
+          "not",
+          "Å",
+          "rot",
+          "vex",
+          "vax",
+          "xav",
+          "zex",
+          "klob",
+          "dog",
+          "rrr",
+          "mo",
+          "wall",
+          "all",
+          "ottin",
+          "ulgh",
+          "shi",
+          "glad",
+        ];
+        planetName += getRandomFrom(planetNames3);
+
+        document.getElementById("planetNameOutput").innerHTML = planetName;
+      }
     </script>
   </head>
   <body>
@@ -81,16 +386,43 @@
       <button onclick="displayDiceRoll(8)">Roll d8</button>
       <button onclick="displayDiceRoll(10)">Roll d10</button>
       <button onclick="displayDiceRoll(20)">Roll d20</button>
+      <button onclick="displayDiceRoll(100)">Roll d100</button>
       <p id="diceRollOutput">0</p>
     </section>
 
     <section id="starSystemGenerator">
-      <h2>Star Systems</h2>
-      <label>Number of Systems to Generate: </label>
+      <h2>Star System Scanner</h2>
+      <label>Number of Systems to scan for: </label>
       <input id="starSystemQuantity" type="number" />
       <br />
-      <button onclick="generateStarSystems()">Generate Star Systems</button>
+      <button onclick="generateStarSystems()">Scan for Systems</button>
       <p id="starSystemOutput"></p>
+    </section>
+
+    <section id="starSystemNameGenerator">
+      <h2>Star System Name</h2>
+      <button onclick="generateStarName()">Generate Star Name</button>
+      <p id="starNameOutput"></p>
+    </section>
+
+    <section id="starSystemTraitsGenerator">
+      <h2>Star System Traits</h2>
+      <p>Scan for System Traits, such as Dominant Race, Economy, and Level of Conflict</p>
+      <button onclick="generateStarTraits()">Generate System Traits</button>
+      <p id="starTraitsOutput"></p>
+    </section>
+
+    <section id="systemPlanetGenerator">
+      <h2>Star System Planets</h2>
+      <p>Determine how many and of what type of planets a star system contains. Now includes dominant biome and atmosphere!</p>
+      <button onclick="generateSystemPlanets()">Roll for Planets</button>
+      <p id="systemPlanetsOutput"></p>
+    </section>
+
+    <section id="planetNameGenerator">
+      <h2>Planet Name</h2>
+      <button onclick="generatePlanetName()">Get a Planet Name</button>
+      <p id="planetNameOutput"></p>
     </section>
   </body>
 </html>
