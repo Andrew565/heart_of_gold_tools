@@ -245,8 +245,8 @@
         "frozen",
         "toxic",
         "marsh",
-        "volcanic"
-      ]
+        "volcanic",
+      ];
       const planetAtmospheres = [
         "Methane",
         "Oxygen",
@@ -267,7 +267,7 @@
         "Ethane",
         "Propane",
         "Nitric Oxide",
-        "Hydrogen Sulfide"
+        "Hydrogen Sulfide",
       ];
 
       function generateSystemPlanets() {
@@ -367,6 +367,16 @@
 
         document.getElementById("planetNameOutput").innerHTML = planetName;
       }
+
+      function generatePlanetExploration() {
+        const explorationTypes = ["Nothing", "Fauna", "Fauna", "Flora", "Civs", "Anomaly"];
+        const explorations = [];
+        for (let i = 0; i < 6; i++) {
+          explorations.push(getRandomFrom(explorationTypes));
+        }
+        const result = `You discover ${explorations.join(", ")}`;
+        document.getElementById("planetExplorationOutput").innerHTML = result;
+      }
     </script>
   </head>
   <body>
@@ -414,7 +424,10 @@
 
     <section id="systemPlanetGenerator">
       <h2>Star System Planets</h2>
-      <p>Determine how many and of what type of planets a star system contains. Now includes dominant biome and atmosphere!</p>
+      <p>
+        Determine how many and of what type of planets a star system contains. Now includes dominant biome and
+        atmosphere!
+      </p>
       <button onclick="generateSystemPlanets()">Roll for Planets</button>
       <p id="systemPlanetsOutput"></p>
     </section>
@@ -423,6 +436,17 @@
       <h2>Planet Name</h2>
       <button onclick="generatePlanetName()">Get a Planet Name</button>
       <p id="planetNameOutput"></p>
+    </section>
+
+    <section>
+      <h2>Geology and Additional Planet Info</h2>
+      <p>Because these lists would require typing in 100 items each, the developer has chosen to skip these for now.</p>
+    </section>
+
+    <section id="planetExplorationGenerator">
+      <h2>Planet Explorations</h2>
+      <button onclick="generatePlanetExploration()">Explore 6 Times</button>
+      <p id="planetExplorationOutput"></p>
     </section>
   </body>
 </html>
