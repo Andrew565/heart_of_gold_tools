@@ -6,27 +6,91 @@
     <title>Heart of Gold Toolkit</title>
     <script>
       function rollDice(max) {
-        const result = Math.floor(Math.random() * max + 1);
+        return Math.floor(Math.random() * max + 1);
+      }
+
+      function displayDiceRoll(max) {
+        const result = rollDice(max);
         document.getElementById("diceRollOutput").innerText = result;
+      }
+
+      // Returns a number between 0 and (max - 1), useful for array indexes
+      function rollIndex(max) {
+        return Math.floor(Math.random() * max);
+      }
+
+      // Returns a random entry from an array
+      /** @param {any[]} thing */
+      function getRandomFrom(thing) {
+        return thing[rollIndex(thing.length)];
+      }
+
+      function starColor() {
+        const starColors = ["Yellow", "Yellow", "Yellow", "Red", "Red", "Green", "Green", "Blue"];
+
+        return getRandomFrom(starColors);
+      }
+
+      function starShape(color) {
+        const starShapes = { Yellow: "Circle", Red: "Square", Green: "Triangle", Blue: "Double Circle" };
+
+        return starShapes[color];
+      }
+
+      function starSignal() {
+        const d20Roll = rollDice(20);
+        return d20Roll === 20;
+      }
+
+      function generateStarSystems() {
+        const quantity = document.getElementById("starSystemQuantity").value;
+        console.log("quantity:", quantity);
+        const stars = [];
+        for (let i = 0; i < quantity; i++) {
+          // Do star system generation here
+          const color = starColor();
+          const shape = starShape(color);
+          const distance = rollDice(6);
+          const signal = starSignal();
+          stars.push({ color, shape, distance, signal });
+        }
+        // Display results here
+        let results = "";
+        stars.forEach((star) => {
+          const line = `Color/Shape: ${star.color}/${star.shape}, Distance: ${star.distance}, Signal Detected? ${star.signal}`;
+          results += line + "<br />";
+        });
+        document.getElementById("starSystemOutput").innerHTML = results;
       }
     </script>
   </head>
   <body>
-    <h1>Heart of Gold Toolkit</h1>
-    <p>
-      This will be a collection of tools to make it easier to play the game "Heart of Gold" (aka The Universinator). The
-      game was developed by Hexgaard, and you should check it out from
-      <a href="https://hexgaard.gumroad.com/l/The_Heart_of_Gold">his site</a> if you haven't already!
-    </p>
+    <section id="introduction">
+      <h1>Heart of Gold Toolkit</h1>
+      <p>
+        This will be a collection of tools to make it easier to play the game "Heart of Gold" (aka The Universinator).
+        The game was developed by Hexgaard, and you should check it out from
+        <a href="https://hexgaard.gumroad.com/l/The_Heart_of_Gold">his site</a> if you haven't already!
+      </p>
+    </section>
 
     <section id="diceRollers">
       <h2>Dice Rollers</h2>
-      <button onclick="rollDice(4)">Roll d4</button>
-      <button onclick="rollDice(6)">Roll d6</button>
-      <button onclick="rollDice(8)">Roll d8</button>
-      <button onclick="rollDice(10)">Roll d10</button>
-      <button onclick="rollDice(20)">Roll d20</button>
+      <button onclick="displayDiceRoll(4)">Roll d4</button>
+      <button onclick="displayDiceRoll(6)">Roll d6</button>
+      <button onclick="displayDiceRoll(8)">Roll d8</button>
+      <button onclick="displayDiceRoll(10)">Roll d10</button>
+      <button onclick="displayDiceRoll(20)">Roll d20</button>
       <p id="diceRollOutput">0</p>
+    </section>
+
+    <section id="starSystemGenerator">
+      <h2>Star Systems</h2>
+      <label>Number of Systems to Generate: </label>
+      <input id="starSystemQuantity" type="number" />
+      <br />
+      <button onclick="generateStarSystems()">Generate Star Systems</button>
+      <p id="starSystemOutput"></p>
     </section>
   </body>
 </html>
