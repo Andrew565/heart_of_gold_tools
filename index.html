@@ -377,6 +377,34 @@
         const result = `You discover ${explorations.join(", ")}`;
         document.getElementById("planetExplorationOutput").innerHTML = result;
       }
+
+      const kardashevTypes = {
+        1: 1,
+        2: 1,
+        3: 1,
+        4: 1,
+        5: 2,
+        6: 2,
+        7: 2,
+        8: 3,
+      };
+      const starBonus = {
+        Yellow: 0,
+        Red: 1,
+        Green: 2,
+        Blue: 3,
+      };
+
+      function generateCivType() {
+        const starType = document.getElementById("civTypeStar").value;
+        const typeRoll = rollDice(8);
+        let totalRoll = typeRoll + starBonus[starType];
+        // Max is an '8'
+        totalRoll = totalRoll > 8 ? 8 : totalRoll;
+        const finalType = kardashevTypes[totalRoll];
+        const result = `Kardashev Type ${finalType}`;
+        document.getElementById("civTypeOutput").innerHTML = result;
+      }
     </script>
   </head>
   <body>
@@ -438,7 +466,7 @@
       <p id="planetNameOutput"></p>
     </section>
 
-    <section>
+    <section id="geologyInfoGenerator">
       <h2>Geology and Additional Planet Info</h2>
       <p>Because these lists would require typing in 100 items each, the developer has chosen to skip these for now.</p>
     </section>
@@ -447,6 +475,23 @@
       <h2>Planet Explorations</h2>
       <button onclick="generatePlanetExploration()">Explore 6 Times</button>
       <p id="planetExplorationOutput"></p>
+    </section>
+
+    <section id="civTypeGenerator">
+      <h2>Civ Type</h2>
+      <p>
+        If you discovered a new Civilization during a Planet Exploration, this generator will help you determine the Civ
+        Kardashev Type.
+      </p>
+      <label for="civTypeStar">Star Color:</label>
+      <select id="civTypeStar">
+        <option value="Yellow" selected>Yellow</option>
+        <option value="Red">Red</option>
+        <option value="Green">Green</option>
+        <option value="Blue">Blue</option>
+      </select>
+      <button onclick="generateCivType()">Discover a Civ</button>
+      <p id="civTypeOutput"></p>
     </section>
   </body>
 </html>
